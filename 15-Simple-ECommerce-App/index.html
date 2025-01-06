@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple E-commerce App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My E-commerce Store</h1>
+      <div class="cart">
+        <button id="view-cart">View Cart (0)</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="product-list">
+        <div class="product" data-id="1">
+          <img src="product1.jpg" alt="Product 1" />
+          <h3>Product 1</h3>
+          <p>$25.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-id="2">
+          <img src="product2.jpg" alt="Product 2" />
+          <h3>Product 2</h3>
+          <p>$40.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Add more products here -->
+      </section>
+
+      <section class="cart-popup" id="cart-popup">
+        <div class="cart-items">
+          <!-- Cart items will be displayed here -->
+        </div>
+        <div class="checkout">
+          <button id="checkout-btn">Checkout</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
