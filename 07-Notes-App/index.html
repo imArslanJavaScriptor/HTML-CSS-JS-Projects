@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Note Taking App</title>
-  <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Note Taking App</h1>
-    <div class="note-input">
-      <input type="text" id="noteText" placeholder="Enter a note">
-      <button id="addNote">Add Note</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Note-Taking App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <h1>Note-Taking App</h1>
+        <button id="addNoteButton">+ Add Note</button>
+      </header>
+
+      <div id="notesGrid" class="notes-grid"></div>
+
+      <!-- Modal -->
+      <div id="noteModal" class="modal hidden">
+        <div class="modal-content">
+          <h2>Add/Edit Note</h2>
+          <form id="noteForm">
+            <input type="text" id="noteTitle" placeholder="Title" required />
+            <textarea
+              id="noteDescription"
+              placeholder="Description"
+              rows="4"
+              required
+            ></textarea>
+            <textarea
+              id="noteContent"
+              placeholder="Content"
+              rows="6"
+              required
+            ></textarea>
+            <button type="submit" id="saveNoteButton">Save Note</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <ul class="notes" id="notesList"></ul>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="./app.js"></script>
-</body>
+
+    <script src="./app.js"></script>
+  </body>
 </html>
