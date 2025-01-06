@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Pokémon Finder</h1>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter Pokémon name or ID"
+        />
+        <button id="searchButton">Search</button>
+      </header>
+
+      <div id="pokemonCard" class="pokemon-card hidden">
+        <img id="pokemonImage" src="" alt="Pokemon Image" />
+        <h2 id="pokemonName"></h2>
+        <p><strong>ID:</strong> <span id="pokemonId"></span></p>
+        <p><strong>Type(s):</strong> <span id="pokemonTypes"></span></p>
+      </div>
+
+      <p id="errorMessage" class="error-message hidden">
+        Pokémon not found. Please try again!
+      </p>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
