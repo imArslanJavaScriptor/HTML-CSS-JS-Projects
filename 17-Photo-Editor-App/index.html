@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Editor App</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="app-container">
+        <h1>Photo Editor App</h1>
+
+        <!-- Upload Button -->
+        <input type="file" id="imageUpload" accept="image/*">
+
+        <!-- Image Display -->
+        <div class="image-container">
+            <img id="image" src="" alt="Uploaded Image" />
+        </div>
+
+        <!-- Editing Controls -->
+        <div class="controls">
+            <label for="rotate">Rotate:</label>
+            <input type="range" id="rotate" min="0" max="360" value="0">
+
+            <label for="brightness">Brightness:</label>
+            <input type="range" id="brightness" min="0" max="200" value="100">
+
+            <label for="contrast">Contrast:</label>
+            <input type="range" id="contrast" min="0" max="200" value="100">
+        </div>
+
+        <!-- Save Button -->
+        <button id="saveButton">Save Image</button>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
