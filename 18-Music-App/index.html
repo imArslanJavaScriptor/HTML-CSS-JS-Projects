@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="music-app">
+        <header>
+            <h1>Music App</h1>
+        </header>
+
+        <!-- Music Player Controls -->
+        <div id="player">
+            <img id="album-cover" src="default.jpg" alt="Album Cover">
+            <div id="controls">
+                <button id="prev-btn">Prev</button>
+                <button id="play-btn">Play</button>
+                <button id="next-btn">Next</button>
+            </div>
+            <div id="progress-container">
+                <input type="range" id="progress-bar" value="0" max="100" step="1">
+            </div>
+            <div id="volume-control">
+                <label for="volume">Volume:</label>
+                <input type="range" id="volume" min="0" max="100" value="50">
+            </div>
+        </div>
+
+        <!-- Upload Song Section -->
+        <div id="upload-section">
+            <h3>Upload Your Song</h3>
+            <input type="file" id="song-upload" accept="audio/*" />
+            <input type="text" id="song-title" placeholder="Song Title" />
+            <input type="text" id="song-artist" placeholder="Artist Name" />
+            <button id="upload-btn">Upload Song</button>
+        </div>
+
+        <!-- Playlist Section -->
+        <div id="playlist">
+            <h3>Your Playlist</h3>
+            <ul id="user-playlist">
+                <!-- User's uploaded songs will be displayed here -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
