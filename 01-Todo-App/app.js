@@ -59,21 +59,29 @@ function renderTodos() {
 }
 
 
-addTodoButton.addEventListener("click", () => {
-  const todoText = todoInput.value.trim();
-  if (todoText) {
-    todos.push({ text: todoText, isEditing: false });
-    saveTodos();
-    renderTodos();
-    todoInput.value = "";
-  }
-});
+
+
+addTodoButton.addEventListener("click" ,() => {
+    const todoText = todoInput.value.trim()
+    if(todoText) {
+        todos.push(
+            {
+                id: Date.now(),
+                text: todoText,
+                isEditing: false
+            }
+        )
+        saveTodos()
+        renderTodos()
+        todoInput.value = ""
+    }
+})
+
+
 
 themeToggle.addEventListener("click", () => {
-  isDarkTheme = !isDarkTheme;
-  document.body.style.backgroundColor = isDarkTheme ? "#121212" : "#ffffff";
-  document.body.style.color = isDarkTheme ? "#ffffff" : "#000000";
-  themeToggle.textContent = isDarkTheme ? "🌙" : "☀️";
-});
-
+    isDarkTheme = !isDarkTheme
+    document.body.style.backgroundColor = isDarkTheme ? "#101010" : "#ffffff"
+    themeToggle.textContent = isDarkTheme ?  "🌙" : "☀️";
+})
 renderTodos();
