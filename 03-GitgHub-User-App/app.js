@@ -1,23 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const searchButton = document.getElementById("search-button");
-    const usernameInput = document.getElementById("username");
-    const userContainer = document.getElementById("user-container");
-  
+    const searchBtnEl = document.getElementById("search-button")
+    const usernameInputEl = document.getElementById("username") 
+    const userContainerEl = document.getElementById("user-container")
+
     const fetchGitHubUser = async (username) => {
       try {
-        const response = await fetch(`https://api.github.com/users/${username}`);
-        if (!response.ok) {
-          throw new Error("User not found");
+        const response = await fetch(`https://api.github.com/users/${username}`)
+        if(!response.ok) {
+          throw new Error("User not found")
         }
-        const user = await response.json();
-        displayUser(user);
+        const user = await response.json()
+        displayUser(user)
       } catch (error) {
-        userContainer.innerHTML = `<p class="placeholder">${error.message}</p>`;
+        userContainerEl.innerHTML = 
+        `<p class="placeholder">${error.message}</p>`
+        
       }
-    };
-  
+    }
+
     const displayUser = (user) => {
-      userContainer.innerHTML = `
+      userContainerEl.innerHTML = `
         <div class="user-card">
           <img src="${user.avatar_url}" alt="${user.login}'s avatar" />
           <div class="user-details">
@@ -36,19 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     };
   
-    searchButton.addEventListener("click", () => {
-      const username = usernameInput.value.trim();
+    searchBtnEl.addEventListener("click", () => {
+      const username = usernameInputEl.value.trim();
       if (username) {
         fetchGitHubUser(username);
       } else {
-        userContainer.innerHTML = `<p class="placeholder">Please enter a username!</p>`;
+        userContainerEl.innerHTML = `<p class="placeholder">Please enter a username!</p>`;
       }
     });
   
-    usernameInput.addEventListener("keypress", (event) => {
+
+    usernameInputEl.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
-        searchButton.click();
+        searchBtnEl.click();
       }
     });
+    
   });
   
