@@ -1,122 +1,69 @@
-// // Select DOM elements
-// const todoInput = document.getElementById("todoInput");
-// const addButton = document.getElementById("addButton");
-// const todoList = document.getElementById("todoList");
-
-// let todos = JSON.parse(localStorage.getItem("todos")) || [];
-
-
-// Function to render the to-do list
-// function renderTodos() {
-//   todoList.innerHTML = ""; // Clear the list
-//   todos.forEach((todo, index) => {
-//     const listItem = document.createElement("li");
-//     listItem.innerHTML = `
-//       <span contenteditable="true" onblur="updateTodo(${index}, this.textContent)" class="todo-text">${todo}</span>
-//       <button onclick="deleteTodo(${index})">Delete</button>
-//     `;
-//     todoList.appendChild(listItem);
-//   });
-// }
-
-// Add a new task
-// function addTodo() {
-//   const task = todoInput.value.trim();
-//   if (task === "") {
-//     alert("Please enter a task.");
-//     return;
-//   }
-//   todos.push(task); // Add to the array
-//   updateLocalStorage(); // Save to local storage
-//   renderTodos(); // Refresh the list
-//   todoInput.value = ""; // Clear the input field
-// }
-
-// Delete a task
-// function deleteTodo(index) {
-//   todos.splice(index, 1); // Remove from the array
-//   updateLocalStorage(); // Save to local storage
-//   renderTodos(); // Refresh the list
-// }
-
-// Update a task
-// function updateTodo(index, newValue) {
-//   if (newValue.trim() === "") {
-//     alert("Task cannot be empty.");
-//     renderTodos(); // Re-render to restore the old value
-//     return;
-//   }
-//   todos[index] = newValue; // Update the array
-//   updateLocalStorage(); // Save to local storage
-// }
-
-
-// Save to local storage
-// function updateLocalStorage() {
-//   localStorage.setItem("todos", JSON.stringify(todos));
-// }
-
-// Initialize the app
-// addButton.addEventListener("click", addTodo);
-// document.addEventListener("DOMContentLoaded", renderTodos);
-
-
-const todoInput = document.getElementById("todoInput")
-const addButton = document.getElementById("addButton")
-const todoList = document.getElementById("todoList")
+const todoInput = document.getElementById("todo-input");
+const addTodoButton = document.getElementById("add-todo");
+const todoList = document.getElementById("todo-list");
+const themeToggle = document.querySelector(".theme-toggle");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let isDarkTheme = true;
 
-// Function to Render the To-Do List 
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
 function renderTodos() {
-    todoList.innerHTML = "";
-    todos.forEach((todo, index) => {
-        const listItem = document.createElement("li")
-        listItem.innerHTML =  `
-        <span contenteditable="true" onblur="updateTodo(${index}, this.textContent)" class="todo-text">${todo}</span>
-        <button onclick="deleteTodo(${index})">Delete</button>`;
-        todoList.appendChild(listItem)
-        
-    });
+  todoList.innerHTML = "";
+  todos.forEach((todo, index) => {
+    const li = document.createElement("li");
+    li.className = "todo-item";
+
+    const span = document.createElement("span");
+    span.textContent = todo.text;
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const editButton = document.createElement("button");
+    editButton.innerHTML = "✏️";
+    editButton.onclick = () => {
+      const updatedText = prompt("Update the task", todo.text);
+      if (updatedText) {
+        todos[index].text = updatedText;
+        saveTodos();
+        renderTodos();
+      }
+    };
+
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "❌";
+    deleteButton.onclick = () => {
+      todos.splice(index, 1);
+      saveTodos();
+      renderTodos();
+    };
+
+    actions.appendChild(editButton);
+    actions.appendChild(deleteButton);
+    li.appendChild(span);
+    li.appendChild(actions);
+    todoList.appendChild(li);
+  });
 }
 
-// Add Task
-function addTask() {
-    const task = todoInput.value.trim()
-    if(task === "") {
-        alert("Please Enter Task")
-        return
-    }
-    todos.push(task)
-    updateLocalStorage()
-    renderTodos()
-    todoInput.value = ""
-}
+addTodoButton.addEventListener("click", () => {
+  const todoText = todoInput.value.trim();
+  if (todoText) {
+    todos.push({ text: todoText });
+    saveTodos();
+    renderTodos();
+    todoInput.value = "";
+  }
+});
 
-// Delete Task
-function deleteTodo(index) {
-    todos.splice(index, 1)
-    updateLocalStorage()
-    renderTodos()
-}
+themeToggle.addEventListener("click", () => {
+  isDarkTheme = !isDarkTheme;
+  document.body.style.backgroundColor = isDarkTheme ? "#121212" : "#ffffff";
+  document.body.style.color = isDarkTheme ? "#ffffff" : "#000000";
+  themeToggle.textContent = isDarkTheme ? "🌙" : "☀️";
+});
 
-// update Task
-function updateTodo(index, newValue) {
-    if(newValue.trim() === "") {
-        alert("Task Should't be Empty")
-        renderTodos()
-        return
-    }
-    todos[index] = newValue
-    updateLocalStorage()
-}
-
-// Save into LocalStorage
-function updateLocalStorage() {
-    localStorage.setItem("todos", JSON.stringify(todos))
-}
-
-// Initialize The App
-addButton.addEventListener("click", addTask)
-document.addEventListener("DOMContentLoaded", renderTodos)
-
+renderTodos();
