@@ -3,6 +3,8 @@ const addTodoButton = document.getElementById("add-todo");
 const todoList = document.getElementById("todo-list");
 const themeToggle = document.querySelector(".theme-toggle");
 
+
+
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 let isDarkTheme = true;
 
@@ -11,48 +13,56 @@ function saveTodos() {
 }
 
 function renderTodos() {
-  todoList.innerHTML = "";
+  todoList.innerHTML = "";  
+
   todos.forEach((todo, index) => {
-    const li = document.createElement("li");
-    li.className = "todo-item";
+    const li = document.createElement("li")
+    li.className = "todo-item"
 
-    const span = document.createElement("span");
-    span.textContent = todo.text;
+    const input = document.createElement("input")
+    input.type = "text"
+    input.value = todo.text
+    input.readOnly = !todo.isEditing
 
-    const actions = document.createElement("div");
-    actions.className = "actions";
+    input.addEventListener("blur" ,() => {
+        todos[index].text = input.value.trim()
+        todos[index].isEditing = false
+        saveTodos()
+        renderTodos()
+    })
 
-    const editButton = document.createElement("button");
+    const actions = document.createElement("div")
+    actions.className = "actions"
+
+    const editButton = document.createElement("button")
     editButton.innerHTML = "✏️";
     editButton.onclick = () => {
-      const updatedText = prompt("Update the task", todo.text);
-      if (updatedText) {
-        todos[index].text = updatedText;
-        saveTodos();
-        renderTodos();
-      }
-    };
+        todos[index].isEditing = !todo.isEditing
+        renderTodos()
+    }
 
-    const deleteButton = document.createElement("button");
+    const deleteButton = document.createElement("button")
     deleteButton.innerHTML = "❌";
     deleteButton.onclick = () => {
-      todos.splice(index, 1);
-      saveTodos();
-      renderTodos();
-    };
+        todos.splice(index, 1)
+        saveTodos()
+        renderTodos()
+    }
 
-    actions.appendChild(editButton);
-    actions.appendChild(deleteButton);
-    li.appendChild(span);
-    li.appendChild(actions);
-    todoList.appendChild(li);
-  });
+    actions.appendChild(editButton)
+    actions.append(deleteButton)
+    li.appendChild(input)
+    li.appendChild(actions)
+    todoList.appendChild(li)
+
+  })
 }
+
 
 addTodoButton.addEventListener("click", () => {
   const todoText = todoInput.value.trim();
   if (todoText) {
-    todos.push({ text: todoText });
+    todos.push({ text: todoText, isEditing: false });
     saveTodos();
     renderTodos();
     todoInput.value = "";
