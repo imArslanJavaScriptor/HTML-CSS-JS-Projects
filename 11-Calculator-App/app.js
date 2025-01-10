@@ -13,7 +13,7 @@ function updateDisplay(value) {
   resultInput.value = value || "0";
 }
 
-// Handle button clicks for numbers and decimals
+// button clicks Handler for numbers and decimals
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.getAttribute("data-value");
