@@ -10,7 +10,16 @@
     <div class="app-container">
       <header>
         <h1>Note-Taking App</h1>
-        <button id="addNoteButton">+ Add Note</button>
+        <div class="header-actions">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search notes..."
+            class="search-bar"
+          />
+          <button id="themeToggle" class="theme-toggle">🌙</button>
+          <button id="addNoteButton" class="add-note-button">+ Add Note</button>
+        </div>
       </header>
 
       <div id="notesGrid" class="notes-grid"></div>
@@ -24,13 +33,13 @@
             <textarea
               id="noteDescription"
               placeholder="Description"
-              rows="4"
+              rows="2"
               required
             ></textarea>
             <textarea
               id="noteContent"
               placeholder="Content"
-              rows="6"
+              rows="4"
               required
             ></textarea>
             <button type="submit" id="saveNoteButton">Save Note</button>
