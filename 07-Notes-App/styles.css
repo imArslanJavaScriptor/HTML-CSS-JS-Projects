@@ -53,7 +53,7 @@ header h1 {
 }
 
 .add-note-button {
-  background-color: #007bff;
+  background-color: #404040;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -85,12 +85,16 @@ header h1 {
 
 .note h3 {
   margin: 0 0 10px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #101010;
 }
 
 .note p {
   margin: 0 0 10px;
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 15px;
+  color: #202020;
+  font-weight: 500;
 }
 
 .note-tags {
@@ -110,12 +114,17 @@ header h1 {
 
 .note-options {
   position: absolute;
+  height: 25px;
+  width: 25px;
   top: 10px;
   right: 10px;
   cursor: pointer;
-  background-color: #eee;
+  background-color: #202022;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px;
-  border-radius: 50%;
+  border-radius: 5px;
   font-size: 1rem;
 }
 
