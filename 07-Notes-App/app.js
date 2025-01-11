@@ -1,3 +1,4 @@
+// JavaScript for enhanced features in the notes app
 const addNoteButton = document.getElementById("addNoteButton");
 const notesGrid = document.getElementById("notesGrid");
 const noteModal = document.getElementById("noteModal");
@@ -5,9 +6,16 @@ const noteForm = document.getElementById("noteForm");
 const noteTitle = document.getElementById("noteTitle");
 const noteDescription = document.getElementById("noteDescription");
 const noteContent = document.getElementById("noteContent");
+const themeToggle = document.getElementById("themeToggle"); // New dark mode toggle
+const searchInput = document.getElementById("searchInput"); // Search bar
 
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 let editIndex = null;
+
+// Toggle dark mode
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
 
 // Open modal
 addNoteButton.addEventListener("click", () => {
@@ -30,6 +38,8 @@ noteForm.addEventListener("submit", (e) => {
     description: noteDescription.value,
     content: noteContent.value,
     color: "#fff",
+    pinned: false,
+    tags: [],
   };
 
   if (editIndex !== null) {
@@ -43,10 +53,22 @@ noteForm.addEventListener("submit", (e) => {
   noteModal.classList.add("hidden");
 });
 
+// Search functionality
+searchInput.addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  renderNotes(query);
+});
+
 // Render notes
-function renderNotes() {
+function renderNotes(query = "") {
   notesGrid.innerHTML = "";
-  notes.forEach((note, index) => {
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(query) ||
+      note.description.toLowerCase().includes(query)
+  );
+
+  filteredNotes.forEach((note, index) => {
     const noteElement = document.createElement("div");
     noteElement.className = "note";
     noteElement.style.backgroundColor = note.color;
@@ -55,10 +77,12 @@ function renderNotes() {
       <h3>${note.title}</h3>
       <p>${note.description}</p>
       <p>${note.content}</p>
+      <div class="note-tags">${note.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
       <div class="note-options">⋮</div>
       <div class="note-options-menu">
         <button onclick="deleteNote(${index})">Delete</button>
         <button onclick="editNote(${index})">Edit</button>
+        <button onclick="pinNoteToggle(${index})">${note.pinned ? "Unpin" : "Pin"}</button>
         <button onclick="changeColor(${index})">Change Color</button>
       </div>
     `;
@@ -113,6 +137,14 @@ function editNote(index) {
   noteDescription.value = note.description;
   noteContent.value = note.content;
   noteModal.classList.remove("hidden");
+}
+
+// Pin/Unpin note
+function pinNoteToggle(index) {
+  notes[index].pinned = !notes[index].pinned;
+  notes.sort((a, b) => b.pinned - a.pinned);
+  saveNotes();
+  renderNotes();
 }
 
 // Change note color
