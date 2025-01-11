@@ -120,6 +120,7 @@ header h1 {
   right: 10px;
   cursor: pointer;
   background-color: #202022;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,14 +133,14 @@ header h1 {
   position: absolute;
   top: 35px;
   right: 10px;
-  background: white;
-  border: 1px solid #ccc;
+  background: #202020;
   border-radius: 5px;
   display: none;
   z-index: 10;
 }
 
 .note-options-menu button {
+  color: #fff;
   width: 100%;
   background: none;
   border: none;
@@ -149,7 +150,9 @@ header h1 {
 }
 
 .note-options-menu button:hover {
-  background: #f0f0f0;
+  background: #ffff;
+  color: #101010;
+  transition: all 0.3s ease;
 }
 
 .modal {
@@ -169,7 +172,7 @@ header h1 {
 }
 
 .modal-content {
-  background: white;
+  background: #202020;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
@@ -177,28 +180,40 @@ header h1 {
 
 .modal-content h2 {
   margin-top: 0;
+  font-size: 24px;
 }
 
 .modal-content form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .modal-content form input,
 .modal-content form textarea,
 .modal-content form button {
-  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  outline: none;
 }
 
 .modal-content form button {
-  background-color: #007bff;
-  color: white;
+  background-color: #fff;
+  color: #202020;
   border: none;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .modal-content form button:hover {
-  background-color: #0056b3;
+  background-color: #505050;
+  color: #fff;
+  transition: all 0.3s ease;
 }
