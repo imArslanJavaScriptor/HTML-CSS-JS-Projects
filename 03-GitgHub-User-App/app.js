@@ -1,23 +1,22 @@
+
   document.addEventListener("DOMContentLoaded", () => {
     const searchBtnEl = document.getElementById("search-button")
     const usernameInputEl = document.getElementById("username") 
     const userContainerEl = document.getElementById("user-container")
 
-    const fetchGitHubUser = async (username) => {
-      try {
-        const response = await fetch(`https://api.github.com/users/${username}`)
-        if(!response.ok) {
-          throw new Error("User not found")
-        }
-        const user = await response.json()
-        displayUser(user)
-      } catch (error) {
-        userContainerEl.innerHTML = 
-        `<p class="placeholder">${error.message}</p>`
-        
+    const fetchGitHubUser = async (username) =>  {
+     try {
+      const response = await fetch(`https://api.github.com/users/${username}`)
+      if(!response.ok) {
+        throw new Error("User Not Found")
       }
+      const user = await response.json()
+      displayUser(user)
+     } catch (error) {
+      userContainerEl.innerHTML = 
+      `<p class="placeholder">${error.message}</p>`
+     }
     }
-
     const displayUser = (user) => {
       userContainerEl.innerHTML = `
         <div class="user-card">
@@ -53,6 +52,5 @@
         searchBtnEl.click();
       }
     });
-    
-  });
-  
+
+  })

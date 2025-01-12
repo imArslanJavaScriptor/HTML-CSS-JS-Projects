@@ -4,19 +4,14 @@ const addTodoButton = document.getElementById("add-todo");
 const todoList = document.getElementById("todo-list");
 const themeToggle = document.querySelector(".theme-toggle");
 
-
-
-
 // Set Todos in Local Storage
 let todos = JSON.parse(localStorage.getItem("todos")) || []
 let isDarkTheme = true
-
 
 // Save Todos Function
 function saveTodos() {
     localStorage.setItem("todos", JSON.stringify(todos))
 }
-
 
 function renderTodos() {
   todoList.innerHTML = "";  
@@ -79,8 +74,6 @@ addTodoButton.addEventListener("click" ,() => {
         todoInput.value = ""
     }
 })
-
-
 
 themeToggle.addEventListener("click", () => {
     isDarkTheme = !isDarkTheme
