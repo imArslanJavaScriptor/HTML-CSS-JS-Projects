@@ -1,3 +1,4 @@
+// Getting Reffrences For The Elements
 const todoInput = document.getElementById("todo-input");
 const addTodoButton = document.getElementById("add-todo");
 const todoList = document.getElementById("todo-list");
@@ -5,12 +6,17 @@ const themeToggle = document.querySelector(".theme-toggle");
 
 
 
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
-let isDarkTheme = true;
 
+// Set Todos in Local Storage
+let todos = JSON.parse(localStorage.getItem("todos")) || []
+let isDarkTheme = true
+
+
+// Save Todos Function
 function saveTodos() {
-  localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify(todos))
 }
+
 
 function renderTodos() {
   todoList.innerHTML = "";  
@@ -57,9 +63,6 @@ function renderTodos() {
 
   })
 }
-
-
-
 
 addTodoButton.addEventListener("click" ,() => {
     const todoText = todoInput.value.trim()
