@@ -1,5 +1,4 @@
-
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const searchBtnEl = document.getElementById("search-button")
     const usernameInputEl = document.getElementById("username") 
     const userContainerEl = document.getElementById("user-container")
